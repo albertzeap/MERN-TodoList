@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 export default class CreateTodo extends Component {
     constructor(props){
@@ -16,6 +17,8 @@ export default class CreateTodo extends Component {
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    // Capture the change in input and set it to component state
 
     onChangeTodoDescription(e) {
         this.setState({
@@ -42,6 +45,17 @@ export default class CreateTodo extends Component {
         console.log(`Todo Description: ${this.state.todo_description}`);
         console.log(`Todo Responsible: ${this.state.todo_responsible}`);
         console.log(`Todo Priority: ${this.state.todo_priority}`);
+
+        // Create object to post to MongoDB
+        const newTodo = {
+            todo_description: this.state.todo_description,
+            todo_responsible: this.state.todo_responsible,
+            todo_priority: this.state.todo_priority,
+            todo_completed: this.state.todo_completed
+        };
+
+        axios.post('http://localhost:4000/todos/create', newTodo)
+            .then(res => console.log(res.data));
 
         this.setState({
             todo_description: "",
