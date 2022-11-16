@@ -1,135 +1,123 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
+// import { useForm } from "../hooks/useForm";
 
-export default class CreateTodo extends Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            todo_description: "",
-            todo_responsible: "",
-            todo_priority: "",
-            todo_completed: false
-        }
+export const CreateTodo = () =>{
 
-        this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
-        this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
-        this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    // Initial state for todo item
+    const initialState = {
+        todo_description: "",
+        todo_responsible: "", 
+        todo_priority: "", 
+        todo_completed: false
     }
 
-    // Capture the change in input and set it to component state
+    // Uses custom hook useForm to handle forms
+    // const [values, handleChange] = useForm(initialState);
 
-    onChangeTodoDescription(e) {
-        this.setState({
-            todo_description: e.target.value
-        });
-    }
+    // useState to handle values in form
+    const [values, setState] = useState(initialState);
 
-    onChangeTodoResponsible(e){
-        this.setState({
-            todo_responsible: e.target.value
-        });
-    }
+    // reset the state back to initial value
+    const clearState = () => {
+        setState({...initialState});
+    };
 
-    onChangeTodoPriority(e) {
-        this.setState({
-            todo_priority: e.target.value
-        });
-    }
+    // keep track of user input 
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setState((prevState) => ({...prevState, [name]: value }));
+    };
 
-    onSubmit(e){
+
+    // Saves the response to an object that is pushed to our backend
+    const submit = (e) => {
         e.preventDefault();
-
-        console.log(`Form Submitted`);
-        console.log(`Todo Description: ${this.state.todo_description}`);
-        console.log(`Todo Responsible: ${this.state.todo_responsible}`);
-        console.log(`Todo Priority: ${this.state.todo_priority}`);
 
         // Create object to post to MongoDB
         const newTodo = {
-            todo_description: this.state.todo_description,
-            todo_responsible: this.state.todo_responsible,
-            todo_priority: this.state.todo_priority,
-            todo_completed: this.state.todo_completed
+            todo_description: values.todo_description,
+            todo_responsible: values.todo_responsible,
+            todo_priority: values.todo_priority,
+            todo_completed: false
         };
 
-        axios.post('http://localhost:4000/todos/create', newTodo)
-            .then(res => console.log(res.data));
+        console.log(newTodo);
 
-        this.setState({
-            todo_description: "",
-            todo_responsible: "",
-            todo_priority: "",
-            todo_completed: false
-        });
+        // axios.post('http://localhost:4000/todos/create', newTodo)
+        //     .then(res => console.log(res.data));
+
+        clearState();
+
+        console.log("submit");
     }
 
-
-    render() {
-        return(
-            <div style={{marginTop: 10}}>
-                <h3>Create New Todo</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Description: </label>
-                        <input required
-                            type="text"
-                            className="form-control"
-                            value={this.state.todo_description}
-                            onChange={this.onChangeTodoDescription}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Responsible: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.todo_responsible}
-                            onChange={this.onChangeTodoResponsible}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input 
-                            className="form-check form-check-inline"
-                            type="radio"
-                            name="priorityOptions"
-                            id="priorityLow"
-                            value="Low"
-                            checked={this.state.todo_priority === "Low"}
-                            onChange={this.onChangeTodoPriority}
-                        />
-                        <label className="form-check-label">Low</label>
-                    </div>
-                    <div className="form-group">
-                        <input 
-                            className="form-check form-check-inline"
-                            type="radio"
-                            name="priorityOptions"
-                            id="priorityMedium"
-                            value="Medium"
-                            checked={this.state.todo_priority === "Medium"}
-                            onChange={this.onChangeTodoPriority}
-                        />
-                        <label className="form-check-label">Medium</label>
-                    </div>
-                    <div className="form-group">
-                        <input 
-                            className="form-check form-check-inline"
-                            type="radio"
-                            name="priorityOptions"
-                            id="priorityHigh"
-                            value="High"
-                            checked={this.state.todo_priority === "High"}
-                            onChange={this.onChangeTodoPriority}
-                        />
-                        <label className="form-check-label">High</label>
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Create Todo" className="btn btn-primary"/>
-                    </div>
-                </form>
+    return(
+        <div style={{marginTop: 10}}>
+        <h3>Create New Todo</h3>
+        <form onSubmit={submit}>
+            <div className="form-group">
+                <label>Description: </label>
+                <input required
+                    name="todo_description"
+                    type="text"
+                    className="form-control"
+                    value={values.todo_description}
+                    onChange={handleChange}
+                />
             </div>
-        )
-    }
+            <div className="form-group">
+                <label>Responsible: </label>
+                <input
+                    name="todo_responsible"
+                    type="text"
+                    className="form-control"
+                    value={values.todo_responsible}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-group">
+                <input 
+                    name="priorityOptions"
+                    className="form-check form-check-inline"
+                    type="radio"
+                    id="priorityLow"
+                    value="Low"
+                    checked={values.todo_priority === "Low"}
+                    onChange={handleChange}
+                />
+                <label className="form-check-label">Low</label>
+            </div>
+            <div className="form-group">
+                <input 
+                    name="priorityOptions"
+                    className="form-check form-check-inline"
+                    type="radio"
+                    id="priorityMedium"
+                    value="Medium"
+                    checked={values.todo_priority === "Medium"}
+                    onChange={handleChange}
+                />
+                <label className="form-check-label">Medium</label>
+            </div>
+            <div className="form-group">
+                <input 
+                    name="priorityOptions"
+                    className="form-check form-check-inline"
+                    type="radio"
+                    id="priorityHigh"
+                    value="High"
+                    checked={values.todo_priority === "High"}
+                    onChange={handleChange}
+                />
+                <label className="form-check-label">High</label>
+            </div>
+            <div className="form-group">
+                <input type="submit" value="Create Todo" className="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+    );
+
 }
