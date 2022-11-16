@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -15,48 +15,89 @@ const Todo = props => (
     </tr>
 )
 
+export const TodoList = () => {
+    const [todosObj, setState] = useState({todos: []});
 
-export default class TodoList extends Component {
-    constructor(props){
-        super(props)
-        this.state = {todos: []};
+    const todoList = () => {
+        return todosObj.todos.map((currentTodo, i)=> {
+            return <Todo todo={currentTodo} key={i}/>
+        })
     }
 
-    componentDidMount(){
+    useEffect(() => {
         axios.get('http://localhost:4000/todos/')
             .then(response => {
-                this.setState({todos: response.data});
+
+                // Left off here 
+                setState({todos: response.data});
+                
             })
-            .catch(function(error){
-                console.log(error);
-            });
-    }
+            .catch(error => console.log(error));
+    },[]);
 
-    todoList() {
-        return this.state.todos.map((currentTodo, i) => {
-            return <Todo todo={currentTodo} key={i}/>
-        });
-    }
+    return(
+        <div>
+            <h3>Todos List</h3>
+            <table className="table table-striped" style={{marginTop: 20}}>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Responsible</th>
+                        <th>Priority</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {todoList()}
+                </tbody>
+            </table>
+        </div>
+    );
 
 
-    render() {
-        return(
-            <div>
-                <h3>Todos List</h3>
-                <table className="table table-striped" style={{marginTop: 20}}>
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Responsible</th>
-                            <th>Priority</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.todoList()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
+};
+
+// export default class TodoList extends Component {
+//     constructor(props){
+//         super(props)
+//         this.state = {todos: []};
+//     }
+
+//     componentDidMount(){
+//         axios.get('http://localhost:4000/todos/')
+//             .then(response => {
+//                 this.setState({todos: response.data});
+//             })
+//             .catch(function(error){
+//                 console.log(error);
+//             });
+//     }
+
+//     todoList() {
+//         return this.state.todos.map((currentTodo, i) => {
+//             return <Todo todo={currentTodo} key={i}/>
+//         });
+//     }
+
+
+//     render() {
+//         return(
+            // <div>
+            //     <h3>Todos List</h3>
+            //     <table className="table table-striped" style={{marginTop: 20}}>
+            //         <thead>
+            //             <tr>
+            //                 <th>Description</th>
+            //                 <th>Responsible</th>
+            //                 <th>Priority</th>
+            //                 <th>Action</th>
+            //             </tr>
+            //         </thead>
+            //         <tbody>
+            //             {this.todoList()}
+            //         </tbody>
+            //     </table>
+            // </div>
+//         )
+//     }
+// }
