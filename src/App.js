@@ -1,17 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import TodoList from "./components/TodoList";
-import EditTodo from "./components/EditTodo";
-import CreateTodo from "./components/CreateTodo";
+
 
 import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CreateTodo } from "./components/CreateTodo";
+import { TodoList } from "./components/TodoList";
+import { EditTodo } from "./components/EditTodo";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="container">
+const App = () => {
+  return(
+    <Router>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a 
               className="navbar-brand"
@@ -23,7 +22,12 @@ class App extends Component {
               />
             </a>
             <Link to="/" className="navbar-brand">MERN Todo App</Link>
-            <div className="collapse navbar-collapse">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">Todos</Link>
@@ -40,10 +44,8 @@ class App extends Component {
             <Route path="/edit/:id" element={<EditTodo/>}/>
             <Route path="/create" element={<CreateTodo/>}/>
           </Routes>
-        </div>
       </Router>
-    );
-  }
+  )
 }
 
 export default App;
