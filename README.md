@@ -1,70 +1,25 @@
-# Getting Started with Create React App
-
+# MERN Stack Todo List Project
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## My Personal Changes
+As I was working on this project, I ran into several errors regarding *react-router-dom*. As it turns out, the tutorial was created before the release of *v6*. Therefore, I was required to refactor the code to meet these new changes. Some of the errors that I ran into included the following:
+- *match.params* had been updated into a hook known as useParams
+- *.history.push* had been updated into a hook known as useNavigate
+- Hooks could not be called in class components
 
-In the project directory, you can run:
+As I finished the tutorial I realized that there were still certain parts of the program that did not function as intended due to updated dependencies. As a result I decided to refactor the whole application. The current tutorial uses features of React such as class components and I wanted to refactor the application so that it did not have to rely on class components. 
 
-### `npm start`
+As a result, I refactored the application using functional components and instead of keeping the state within class components, I utilized hooks to manage state. This overall resulted in a smoother experience as hooks are becoming the common practice versus class components. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About Project 
+This project utilizing the MERN stack to create a basic web application that can perform CRUD operations
+The early stages of this project were developed with the help of the following tutorial
+[The Mern Stack Tutorial](https://medium.com/codingthesmartway-com-blog/the-mern-stack-tutorial-building-a-react-crud-application-from-start-to-finish-part-1-d8d701c2995).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
+This tutorial utilizes class components and relies heavily on state management within the class components
+The three class components that are used are TodoList.js, EditTodo.js, and CreateTodo.js. One can assume what these components are responsible for based on their names.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Backend
+This tutorial utilizes both Node.js and MongoDB to create a reliable backend in which to connect to the frontend and perform CRUD operations
+Node.js is used to create a server on which the database can be stored and accessed on. This also allows the frontend to connect to the backend via fetches. MongoDB is then used to store the structure of the Todo object 
