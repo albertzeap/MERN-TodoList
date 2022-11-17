@@ -8,49 +8,9 @@ import { CreateTodo } from "./components/CreateTodo";
 import { TodoList } from "./components/TodoList";
 import { EditTodo } from "./components/EditTodo";
 
-// class App extends Component {
-//   render() {
-//     return (
-      // <Router>
-      //   <div className="container">
-      //     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      //       <a 
-      //         className="navbar-brand"
-      //         href="https://codingthesmartway.com" 
-      //         target="_blank" rel="noreferrer"
-      //       >
-      //         <img src={logo} width="30" height="30"
-      //              alt="CodingTheSmartWay.com"
-      //         />
-      //       </a>
-      //       <Link to="/" className="navbar-brand">MERN Todo App</Link>
-      //       <div className="collapse navbar-collapse">
-      //         <ul className="navbar-nav mr-auto">
-      //           <li className="navbar-item">
-      //             <Link to="/" className="nav-link">Todos</Link>
-      //           </li>
-      //           <li className="navbar-item">
-      //             <Link to="/create" className="nav-link">Create Todo</Link>
-      //           </li>
-      //         </ul>
-      //       </div>
-      //     </nav>
-      //     <br/>
-      //     <Routes>
-      //       <Route path="/" exact element={<TodoList/>}/>
-      //       <Route path="/edit/:id" element={<EditTodo/>}/>
-      //       <Route path="/create" element={<CreateTodo/>}/>
-      //     </Routes>
-      //   </div>
-      // </Router>
-//     );
-//   }
-// }
-
 const App = () => {
   return(
     <Router>
-        <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a 
               className="navbar-brand"
@@ -62,7 +22,12 @@ const App = () => {
               />
             </a>
             <Link to="/" className="navbar-brand">MERN Todo App</Link>
-            <div className="collapse navbar-collapse">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">Todos</Link>
@@ -79,7 +44,6 @@ const App = () => {
             <Route path="/edit/:id" element={<EditTodo/>}/>
             <Route path="/create" element={<CreateTodo/>}/>
           </Routes>
-        </div>
       </Router>
   )
 }

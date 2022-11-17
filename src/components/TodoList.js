@@ -33,21 +33,26 @@ export const TodoList = () => {
     },[]);
 
     return(
-        <div>
-            <h3>Todos List</h3>
-            <table className="table table-striped" style={{marginTop: 20}}>
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Responsible</th>
-                        <th>Priority</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {todoList()}
-                </tbody>
-            </table>
+        <div className="container">
+            <div className="table-responsive">
+                <div className="jumbotron jumbotron-fluid">
+                    <h3 className="display-4">Todos List</h3>
+                    <p className="lead">Welcome to your todo list dashboard</p>
+                </div>
+                <table className="table table-hover" style={{marginTop: 20}}>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Responsible</th>
+                            <th>Priority</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {todoList()}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 

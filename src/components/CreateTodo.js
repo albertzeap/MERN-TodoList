@@ -54,70 +54,74 @@ export const CreateTodo = () =>{
     }
 
     return(
-        <div style={{marginTop: 10}}>
-        <h3>Create New Todo</h3>
-        <form onSubmit={submit}>
-            <div className="form-group">
-                <label>Description: </label>
-                <input required
-                    name="todo_description"
-                    type="text"
-                    className="form-control"
-                    value={values.todo_description}
-                    onChange={handleChange}
-                />
+        <div className="container" classstyle={{marginTop: 10}}>
+            <div className="jumbotron jumbotron-fluid pb-2">
+                <h3 className="display-4">Create Todo</h3>
+                <p className="lead">Fill out the form below to create new tasks</p>
             </div>
-            <div className="form-group">
-                <label>Responsible: </label>
-                <input
-                    name="todo_responsible"
-                    type="text"
-                    className="form-control"
-                    value={values.todo_responsible}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="form-group">
-                <input 
-                    name="todo_priority"
-                    className="form-check form-check-inline"
-                    type="radio"
-                    id="priorityLow"
-                    value="Low"
-                    checked={values.todo_priority === "Low"}
-                    onChange={handleChange}
-                />
-                <label className="form-check-label">Low</label>
-            </div>
-            <div className="form-group">
-                <input 
-                    name="todo_priority"
-                    className="form-check form-check-inline"
-                    type="radio"
-                    id="priorityMedium"
-                    value="Medium"
-                    checked={values.todo_priority === "Medium"}
-                    onChange={handleChange}
-                />
-                <label className="form-check-label">Medium</label>
-            </div>
-            <div className="form-group">
-                <input 
-                    name="todo_priority"
-                    className="form-check form-check-inline"
-                    type="radio"
-                    id="priorityHigh"
-                    value="High"
-                    checked={values.todo_priority === "High"}
-                    onChange={handleChange}
-                />
-                <label className="form-check-label">High</label>
-            </div>
-            <div className="form-group">
-                <input type="submit" value="Create Todo" className="btn btn-primary"/>
-            </div>
-        </form>
-    </div>
+       
+            <form onSubmit={submit}>
+                <div className="form-group">
+                    <label>Description: </label>
+                    <input required
+                        name="todo_description"
+                        type="text"
+                        className="form-control"
+                        value={values.todo_description}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Responsible: </label>
+                    <input
+                        name="todo_responsible"
+                        type="text"
+                        className="form-control"
+                        value={values.todo_responsible}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <input 
+                        name="todo_priority"
+                        className="form-check form-check-inline"
+                        type="radio"
+                        id="priorityLow"
+                        value="Low"
+                        checked={values.todo_priority === "Low"}
+                        onChange={handleChange}
+                    />
+                    <label className="form-check-label">Low</label>
+                </div>
+                <div className="form-group">
+                    <input 
+                        name="todo_priority"
+                        className="form-check form-check-inline"
+                        type="radio"
+                        id="priorityMedium"
+                        value="Medium"
+                        checked={values.todo_priority === "Medium"}
+                        onChange={handleChange}
+                    />
+                    <label className="form-check-label">Medium</label>
+                </div>
+                <div className="form-group">
+                    <input 
+                        name="todo_priority"
+                        className="form-check form-check-inline"
+                        type="radio"
+                        id="priorityHigh"
+                        value="High"
+                        checked={values.todo_priority === "High"}
+                        onChange={handleChange}
+                    />
+                    <label className="form-check-label">High</label>
+                </div>
+                <div className="form-group">
+                    <input type="submit" value="Create Todo" className="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
     );
 
 }

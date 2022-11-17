@@ -76,7 +76,7 @@ export const EditTodo = () => {
 
 
     return(
-        <div>
+        <div className="container">
             <h3 align="center">Edit Todo</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
