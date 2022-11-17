@@ -27,10 +27,7 @@ export const TodoList = () => {
     useEffect(() => {
         axios.get('http://localhost:4000/todos/')
             .then(response => {
-
-                // Left off here 
-                setState({todos: response.data});
-                
+                setState({todos: response.data}); 
             })
             .catch(error => console.log(error));
     },[]);

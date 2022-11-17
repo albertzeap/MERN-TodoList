@@ -45,8 +45,8 @@ export const CreateTodo = () =>{
 
         console.log(newTodo);
 
-        // axios.post('http://localhost:4000/todos/create', newTodo)
-        //     .then(res => console.log(res.data));
+        axios.post('http://localhost:4000/todos/create', newTodo)
+            .then(res => console.log(res.data));
 
         clearState();
 
@@ -79,7 +79,7 @@ export const CreateTodo = () =>{
             </div>
             <div className="form-group">
                 <input 
-                    name="priorityOptions"
+                    name="todo_priority"
                     className="form-check form-check-inline"
                     type="radio"
                     id="priorityLow"
@@ -91,7 +91,7 @@ export const CreateTodo = () =>{
             </div>
             <div className="form-group">
                 <input 
-                    name="priorityOptions"
+                    name="todo_priority"
                     className="form-check form-check-inline"
                     type="radio"
                     id="priorityMedium"
@@ -103,7 +103,7 @@ export const CreateTodo = () =>{
             </div>
             <div className="form-group">
                 <input 
-                    name="priorityOptions"
+                    name="todo_priority"
                     className="form-check form-check-inline"
                     type="radio"
                     id="priorityHigh"

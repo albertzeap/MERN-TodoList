@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
-import EditTodo from "./components/EditTodo";
 
 import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CreateTodo } from "./components/CreateTodo";
 import { TodoList } from "./components/TodoList";
+import { EditTodo } from "./components/EditTodo";
 
 // class App extends Component {
 //   render() {
